@@ -1,22 +1,34 @@
 import helper from "@/utils/helper";
 
+let bindValue = null;
+
 export default {
   bind(el, bind) {
-    el.addEventListener("mouseover", (e) => {
-      const tooltipEl = renderTooltipEl(bind.value, e.clientY + 7.5, e.clientX + 7.5);
-      const appEl = document.getElementById("app");
-      appEl.append(helper.htmlToElement(tooltipEl));
-    });
-    el.addEventListener("mouseout", () => {
-      const tooltipEl = document.getElementById("tooltip");
-      tooltipEl.remove();
-    });
+    bindValue = bind;
+    el.addEventListener("mouseover", handlerMouseover);
+    el.addEventListener("mouseout", handlerMouseout);
   },
 
   update(el, bind, vnode, oldVnode) {
-    console.log('run', bind.value, oldVnode);
-  }
+    el.removeEventListener("mouseover", handlerMouseover);
+    el.removeEventListener("mouseout", handlerMouseout);
+  },
 };
+
+function handlerMouseover(e) {
+  const tooltipEl = renderTooltipEl(
+    bindValue.value,
+    e.clientY + 7.5,
+    e.clientX + 7.5
+  );
+  const appEl = document.getElementById("app");
+  appEl.append(helper.htmlToElement(tooltipEl));
+}
+
+function handlerMouseout() {
+  const tooltipEl = document.getElementById("tooltip");
+  tooltipEl.remove();
+}
 
 function renderTooltipEl(value, top, left) {
   return `
