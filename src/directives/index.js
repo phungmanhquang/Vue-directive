@@ -1,5 +1,6 @@
 import clipboard from "./clipboard";
 import clipboardSelection from "./clipboardSelection";
+import error from "./error";
 import log from "./log";
 import outsideClick from "./outsideClick";
 import search from "./search";
@@ -13,5 +14,6 @@ export default {
     Vue.directive('tooltip', tooltip)
     Vue.directive('search', search)
     Vue.directive('outside-click', outsideClick)
+    Vue.directive('error', error)
   }
 }

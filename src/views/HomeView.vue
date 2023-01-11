@@ -4,6 +4,7 @@
     <div>
       <button
         class="mb-20 bg-slate-600 text-white p-3 rounded-lg"
+        @click="test"
         v-clipboard="valueCopy"
       >
         v-clipboard
@@ -62,6 +63,9 @@
     >
       {{ text2 }}
     </p>
+
+    <!-- error image -->
+    <img src="asd" class="w-80 h-80" v-error />
   </div>
 </template>
 
